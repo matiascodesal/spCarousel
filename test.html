@@ -5,21 +5,23 @@
     <style>
       .sp-carousel-frame {
         overflow:hidden;
-        width: 1200px;
+        width: 1600px;
+        height: 450px;
         margin-left:auto;
         margin-right: auto;
         display: block;
       }
       .sp-carousel-inner {
-        width:5000px; /* this should be >3x .sp-carousel-item's width */
+        /* width:5000px; this should be >3x .sp-carousel-item's width */
         display: block;
         position: relative;
-        left: -600px; /* this should be (.sp-carousel-item's width)/4 - (.sp-carousel-item's width) */
+        /* left: -600px;  this should be (.sp-carousel-item's width)/4 - (.sp-carousel-item's width) */
       }
       .sp-carousel-item {
         display:inline-block;
         width:800px;
         height:auto;
+        position: absolute;
       }
       .sp-carousel-item > img {
         width:100%;
@@ -33,8 +35,8 @@
   <body>
     <div class="sp-carousel-frame">
       <div class="sp-carousel-inner">
-        <div class="sp-carousel-item"><img src="images/formatty1.jpg"/></div><!--
-        --><div class="sp-carousel-item active"><img src="images/formatty2.jpg"/></div><!--
+        <div class="sp-carousel-item active"><img src="images/formatty1.jpg"/></div><!--
+        --><div class="sp-carousel-item"><img src="images/formatty2.jpg"/></div><!--
         --><div class="sp-carousel-item"><img src="images/formatty3.jpg"/></div><!--
         --><div class="sp-carousel-item"><img src="images/formatty4.jpg"/></div>
       </div>
