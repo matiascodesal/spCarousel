@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Test</title>
+    <script src="js/spCarousel.js"></script>
+    <style>
+      .sp-carousel-frame {
+        overflow:hidden;
+        width: 1200px;
+        margin-left:auto;
+        margin-right: auto;
+        display: block;
+      }
+      .sp-carousel-inner {
+        width:5000px; /* this should be >3x .sp-carousel-item's width */
+        display: block;
+        position: relative;
+        left: -600px; /* this should be (.sp-carousel-item's width)/4 - (.sp-carousel-item's width) */
+      }
+      .sp-carousel-item {
+        display:inline-block;
+        width:800px;
+        height:auto;
+      }
+      .sp-carousel-item > img {
+        width:100%;
+        opacity:0.4;
+      }
+      .active > img {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sp-carousel-frame">
+      <div class="sp-carousel-inner">
+        <div class="sp-carousel-item"><img src="images/formatty1.jpg"/></div><!--
+        --><div class="sp-carousel-item active"><img src="images/formatty2.jpg"/></div><!--
+        --><div class="sp-carousel-item"><img src="images/formatty3.jpg"/></div><!--
+        --><div class="sp-carousel-item"><img src="images/formatty4.jpg"/></div>
+      </div>
+    </div>
+    <div><a id="sp-carousel-prev-btn" href="#">Prev</a></div>
+    <div><a id="sp-carousel-next-btn" href="#">Next</a></div>
+  </body>
+ </html>
