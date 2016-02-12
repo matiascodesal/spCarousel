@@ -7,6 +7,8 @@ var spCarousel = spCarousel || {};
 	var frameWidth, frameHeight, slideWidth, slideHeight, 
 		slidesWrapWidth, slidesWrapHeight, imgRatio;
 	var offset;
+	var slideTransDuration = 500;
+	var transitionLocked = false;
 
 	function calculateDimensions() {
 		imgRatio = slidesArr[0].naturalWidth / slidesArr[0].naturalHeight;
@@ -48,9 +50,8 @@ var spCarousel = spCarousel || {};
 	}
 
 	function populateVisibleSlides() {
-		// @todo: Raise an error if there are no slides
 		if (slidesArr.length < 3) {
-
+			alert("[Error] Carousel must contain at least 3 images");
 		}
 		visibleSlidesArr.push(slidesArr.length - 1);
 		visibleSlidesArr.push(0);
@@ -75,7 +76,40 @@ var spCarousel = spCarousel || {};
 		drawSlides();
 	}
 
+	function slidePrevHandler() {
+		if (!acquireTransitionLock()) {
+			return;
+		}
+
+		slidesArr[currentIndex].className = slidesArr[currentIndex].className.replace('active', '');
+		currentIndex = getPrevSlideIndex();
+		slidesArr[currentIndex].className += slidesArr[currentIndex].className ? ' active' : 'active';
+		var prevIndex = getPrevSlideIndex(); // The next one we're pushing to the array
+		visibleSlidesArr.unshift(prevIndex);
+		slidesArr[prevIndex].style.left = (-slideWidth-offset) + 'px';
+		console.log(offset)
+		console.log((-slideWidth-offset));
+		slidesArr[prevIndex].style.display = "inline-block";
+		var animObj = slidesWrapElem.animate([{transform: 'translate(0)'},
+										{transform: 'translate(' + slideWidth + 'px, 0px)'}
+										], {duration:slideTransDuration, easing:'ease-out'});
+		animObj.addEventListener('finish', function(e) {
+			var newPos;
+			for (i = 0; i < visibleSlidesArr.length; i++) {
+				newPos = Number(slidesArr[visibleSlidesArr[i]].style.left.replace("px", "")) + slideWidth;
+		  		slidesArr[visibleSlidesArr[i]].style.left = newPos + 'px';
+		  	}
+		  	slidesArr[visibleSlidesArr[visibleSlidesArr.length-1]].style.display = "none";
+			visibleSlidesArr.pop();
+			releaseTransitionLock()
+		});
+		
+	}
 	function slideNextHandler() {
+		if (!acquireTransitionLock()) {
+			return;
+		}
+
 		slidesArr[currentIndex].className = slidesArr[currentIndex].className.replace('active', '');
 		currentIndex = getNextSlideIndex();
 		slidesArr[currentIndex].className += slidesArr[currentIndex].className ? ' active' : 'active';
@@ -83,19 +117,41 @@ var spCarousel = spCarousel || {};
 		visibleSlidesArr.push(nextIndex);
 		slidesArr[nextIndex].style.left = (1.5*slideWidth+offset) + 'px';
 		slidesArr[nextIndex].style.display = "inline-block";
-		var newPos;
-		for (i = 0; i < visibleSlidesArr.length; i++) {
-			newPos = Number(slidesArr[visibleSlidesArr[i]].style.left.replace("px", "")) - slideWidth;
-		    slidesArr[visibleSlidesArr[i]].style.left = newPos + 'px';
+		var animObj = slidesWrapElem.animate([{transform: 'translate(0)'},
+										{transform: 'translate(' + -slideWidth + 'px, 0px)'}
+										], {duration:slideTransDuration, easing:'ease-out'});
+		animObj.addEventListener('finish', function(e) {
+			var newPos;
+			for (i = 0; i < visibleSlidesArr.length; i++) {
+				newPos = Number(slidesArr[visibleSlidesArr[i]].style.left.replace("px", "")) - slideWidth;
+		  		slidesArr[visibleSlidesArr[i]].style.left = newPos + 'px';
+		  	}
+		  	slidesArr[visibleSlidesArr[0]].style.display = "none";
+			visibleSlidesArr.shift();
+			releaseTransitionLock();
+		});
+		
+	}
+
+	function acquireTransitionLock() {
+		if (transitionLocked) {
+			return false;
 		}
-		slidesArr[visibleSlidesArr[0]].style.display = "none";
-		visibleSlidesArr.shift();
+		else {
+			transitionLocked=true;
+			return true;
+		}
+	}
+
+	function releaseTransitionLock() {
+		transitionLocked=false;
 	}
 
 	
 	window.onload = function() {
 		window.addEventListener('resize', windowResizeHandler, true);
-		document.getElementById('sp-carousel-next-btn').addEventListener('click', slideNextHandler, false);
+		document.getElementById('sp-carousel-prev-btn').addEventListener('click', slidePrevHandler, true);
+		document.getElementById('sp-carousel-next-btn').addEventListener('click', slideNextHandler, true);
 		spCarousel.init();
 	};
 
