@@ -3,6 +3,34 @@
 	{
 		"selected_items":
 		[
+			[
+				"slide",
+				"slideWidth"
+			],
+			[
+				"sli",
+				"slideWidth"
+			],
+			[
+				"slides",
+				"slidesArr"
+			],
+			[
+				"slideW",
+				"slideWidth"
+			],
+			[
+				"slideWra",
+				"slidesWrapWidth"
+			],
+			[
+				"frame",
+				"frameWidth"
+			],
+			[
+				"sl",
+				"visibleSlidesArr"
+			]
 		]
 	},
 	"buffers":
@@ -11,7 +39,7 @@
 			"file": "test.html",
 			"settings":
 			{
-				"buffer_size": 1370,
+				"buffer_size": 1422,
 				"line_ending": "Unix"
 			}
 		},
@@ -19,7 +47,7 @@
 			"file": "js/spCarousel.js",
 			"settings":
 			{
-				"buffer_size": 871,
+				"buffer_size": 2817,
 				"line_ending": "Windows",
 				"name": "var SpCarousel = (function (spCarousel) {"
 			}
@@ -106,15 +134,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1370,
+						"buffer_size": 1422,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								417,
-								417
+								1044,
+								1044
 							]
 						],
 						"settings":
@@ -136,24 +164,28 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 871,
+						"buffer_size": 2817,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								871,
-								871
+								2399,
+								2399
 							]
 						],
 						"settings":
 						{
 							"auto_name": "var SpCarousel = (function (spCarousel) {",
+							"rulers":
+							[
+								80
+							],
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

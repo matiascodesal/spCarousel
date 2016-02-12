@@ -11,12 +11,12 @@ var spCarousel = spCarousel || {};
 	function calculateDimensions() {
 		imgRatio = slidesArr[0].naturalWidth / slidesArr[0].naturalHeight;
 		frameWidth = frameElem.offsetWidth;
-		frameHeight = frameWidth / imgRatio / 2
-		slideWidth = frameWidth / 2;
+		frameHeight = frameWidth / imgRatio / 1.5
+		slideWidth = frameWidth / 1.5;
 		slideHeight = frameHeight;
 		slidesWrapWidth = 4 * slideWidth;
 		slidesWrapHeight = frameHeight;
-		offset = slideWidth/2;
+		offset = slideWidth - (frameWidth-slideWidth)/2;
 	}
 
 	spCarousel.init = function() {
@@ -26,6 +26,7 @@ var spCarousel = spCarousel || {};
 
 		calculateDimensions();
 		populateVisibleSlides();
+		drawSlides();
 	};
 
 	function getPrevSlideIndex() {
@@ -54,40 +55,36 @@ var spCarousel = spCarousel || {};
 		visibleSlidesArr.push(slidesArr.length - 1);
 		visibleSlidesArr.push(0);
 		visibleSlidesArr.push(1);
+	}
 
+	function drawSlides() {
 		for (i = 0; i < slidesArr.length; i++) { 
 		    slidesArr[i].style.display = "none";
+		    slidesArr[i].style.width = slideWidth + "px";
 		}
-		var xPos = -slideWidth + offset;
+		var xPos = -offset;
 		for (i = 0; i < visibleSlidesArr.length; i++) { 
 		    slidesArr[visibleSlidesArr[i]].style.left = xPos.toString() + 'px';
 		    slidesArr[visibleSlidesArr[i]].style.display = "inline-block";
 		    xPos += slideWidth;
 		}
-		
 	}
-
-	function getCarouselDimensions() {
-
-	}
-
 
 	function windowResizeHandler() {
-		console.log('resize fired!');
-	}
-
-	function clickHandler(e) {
-		e.preventDefault();
+		calculateDimensions();
+		drawSlides();
 	}
 
 	function slideNextHandler() {
+		slidesArr[currentIndex].className = slidesArr[currentIndex].className.replace('active', '');
 		currentIndex = getNextSlideIndex();
+		slidesArr[currentIndex].className += slidesArr[currentIndex].className ? ' active' : 'active';
 		var nextIndex = getNextSlideIndex(); // The next one we're pushing to the array
 		visibleSlidesArr.push(nextIndex);
-		slidesArr[nextIndex].style.left = (2*slideWidth+offset) + 'px';
+		slidesArr[nextIndex].style.left = (1.5*slideWidth+offset) + 'px';
 		slidesArr[nextIndex].style.display = "inline-block";
 		var newPos;
-		for (i = 0; i < visibleSlidesArr.length; i++) { 
+		for (i = 0; i < visibleSlidesArr.length; i++) {
 			newPos = Number(slidesArr[visibleSlidesArr[i]].style.left.replace("px", "")) - slideWidth;
 		    slidesArr[visibleSlidesArr[i]].style.left = newPos + 'px';
 		}
