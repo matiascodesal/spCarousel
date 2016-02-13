@@ -3,20 +3,18 @@
     <title>Test</title>
     <script src="js/spCarousel.js"></script>
     <style>
-      .sp-carousel-frame {
-        overflow:hidden;
+      .sp-carousel-frame-pos {
         width: 100%;
-        position:relative;
-        height: 400px;
         margin-left:auto;
         margin-right: auto;
-        display: block;
+        /* position:relative; */
+        /* overflow:hidden; */
+        /* display: block; */
       }
+      /*
       .sp-carousel-inner {
-        /* width:5000px; this should be >3x .sp-carousel-item's width */
         display: block;
         position: relative;
-        /* left: -600px;  this should be (.sp-carousel-item's width)/4 - (.sp-carousel-item's width) */
       }
       .sp-carousel-item {
         display:inline-block;
@@ -32,33 +30,32 @@
         -o-transition:opacity 0.5s;
         transition:opacity 0.5s;
       }
-      #sp-carousel-prev-btn {
+      .sp-carousel-prev-btn {
         display:inline-block;
         left:0;
         height:100%;
         position: absolute;
       }
-      #sp-carousel-next-btn {
+      .sp-carousel-next-btn {
         display:inline-block;
         right:0;
         height:100%;
         position: absolute;
       }
-      .active > img {
+      .sp-active > img {
         opacity: 1;
       }
+      */
     </style>
   </head>
   <body>
-    <div class="sp-carousel-frame">
+    <div class="sp-carousel-frame sp-carousel-frame-pos">
       <div class="sp-carousel-inner">
-        <div class="sp-carousel-item active"><img src="images/formatty1.jpg"/></div><!--
-        --><div class="sp-carousel-item"><img src="images/formatty2.jpg"/></div><!--
-        --><div class="sp-carousel-item"><img src="images/formatty3.jpg"/></div><!--
-        --><div class="sp-carousel-item"><img src="images/formatty4.jpg"/></div>
+        <div class="sp-carousel-item sp-active"><img src="images/formatty1.jpg"/></div>
+        <div class="sp-carousel-item"><img src="images/formatty2.jpg"/></div>
+        <div class="sp-carousel-item"><img src="images/formatty3.jpg"/></div>
+        <div class="sp-carousel-item"><img src="images/formatty4.jpg"/></div>
       </div>
-    <div id="sp-carousel-prev-btn"><a  href="#">Prev</a></div>
-    <div id="sp-carousel-next-btn"><a  href="#">Next</a></div>
     </div>
     
   </body>

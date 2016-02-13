@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"sp-ca",
+				"sp-carousel-control"
+			],
+			[
+				"next",
+				"nextButton"
+			],
+			[
+				"frame",
+				"frameHeight"
+			],
+			[
+				"nex",
+				"nextButton"
+			],
+			[
+				"fram",
+				"frameElem"
+			],
+			[
+				"trans",
+				"transitionLocked"
+			],
+			[
 				"slide",
 				"slideWidth"
 			],
@@ -24,10 +48,6 @@
 				"slidesWrapWidth"
 			],
 			[
-				"frame",
-				"frameWidth"
-			],
-			[
 				"sl",
 				"visibleSlidesArr"
 			]
@@ -39,7 +59,7 @@
 			"file": "test.html",
 			"settings":
 			{
-				"buffer_size": 1422,
+				"buffer_size": 1590,
 				"line_ending": "Unix"
 			}
 		},
@@ -47,7 +67,7 @@
 			"file": "js/spCarousel.js",
 			"settings":
 			{
-				"buffer_size": 2817,
+				"buffer_size": 12109,
 				"line_ending": "Windows",
 				"name": "var SpCarousel = (function (spCarousel) {"
 			}
@@ -94,7 +114,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -125,7 +145,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -134,15 +154,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1422,
+						"buffer_size": 1590,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1044,
-								1044
+								96,
+								96
 							]
 						],
 						"settings":
@@ -152,10 +172,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 45.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -164,15 +184,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2817,
+						"buffer_size": 12109,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2399,
-								2399
+								11319,
+								11319
 							]
 						],
 						"settings":
@@ -182,13 +202,15 @@
 							[
 								80
 							],
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 2475.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -196,7 +218,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -233,7 +255,7 @@
 	"project": "spCarousel.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
