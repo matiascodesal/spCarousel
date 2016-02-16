@@ -4,7 +4,7 @@ var spCarousel = spCarousel || {};
 		var slidesArr = [];
 		var visibleSlidesArr = [];
 		var frameElem, slidesWrapElem, prevButton, nextButton;
-		var frameWidth, frameHeight, slideWidth, slideHeight, 
+		var frameWidth, frameHeight, frameMaxWidth, slideWidth, slideHeight, 
 				slidesWrapWidth, slidesWrapHeight, imgRatio, sideWidth;
 		var offset;
 		var slideTransDuration = 500;
@@ -13,24 +13,30 @@ var spCarousel = spCarousel || {};
 		var slideTimer;
 
 		function calculateDimensions() {
-				console.log(slidesArr[0].naturalWidth);
-				console.log(slidesArr[0]);
-				imgRatio = slidesArr[0].children[0].naturalWidth / slidesArr[0].children[0].naturalHeight;
-				frameWidth = frameElem.offsetWidth;
-				frameHeight = frameWidth / imgRatio / 1.5
-				console.log(frameHeight);
-				console.log(imgRatio);
-				slideWidth = frameWidth / 1.5;
-				slideHeight = frameHeight;
-				slidesWrapWidth = 4 * slideWidth;
-				slidesWrapHeight = frameHeight;
-				bookEndWidth = (frameWidth-slideWidth)/2
-				offset = slideWidth - bookEndWidth;
+			var frameElemStyles = getComputedStyle(frameElem, null);
+			var tmpMaxHeight = frameElemStyles.maxHeight.replace("px", "");
+			imgRatio = slidesArr[0].children[0].naturalWidth / slidesArr[0].children[0].naturalHeight;
+			frameWidth = frameElem.offsetWidth;
+			frameHeight = frameWidth / imgRatio / 1.5;
+			frameMaxWidth = null;
+			if (tmpMaxHeight != undefined
+					&& Number(tmpMaxHeight) < frameHeight){
+				frameHeight = Number(tmpMaxHeight);
+				frameWidth = frameHeight * imgRatio * 1.5;
+				frameMaxWidth = frameWidth;
+			}
+			slideWidth = frameWidth / 1.5;
+			slideHeight = frameHeight;
+			slidesWrapWidth = 4 * slideWidth;
+			slidesWrapHeight = frameHeight;
+			bookEndWidth = (frameWidth-slideWidth)/2
+			offset = slideWidth - bookEndWidth;
 		}
 
 		spCarousel.init = function() {
 				createStyling();
 				frameElem = document.getElementsByClassName('sp-carousel-frame')[0];
+				spCarousel.frameElem = frameElem;
 				spCarousel.test = frameElem;
 				slidesWrapElem = document.getElementsByClassName('sp-carousel-inner')[0];
 				slidesArr = slidesWrapElem.children;
@@ -103,6 +109,7 @@ var spCarousel = spCarousel || {};
 
 		function drawSlides() {
 				frameElem.style.height = frameHeight + 'px';
+				frameElem.style.maxWidth = frameMaxWidth + 'px';
 				for (i = 0; i < slidesArr.length; i++) { 
 						slidesArr[i].style.display = "none";
 						slidesArr[i].style.width = slideWidth + "px";
@@ -125,7 +132,6 @@ var spCarousel = spCarousel || {};
 		}
 
 		function slidePrevHandler(e) {
-				console.log('hello');
 				if (!acquireTransitionLock()) {
 						return;
 				}
@@ -136,8 +142,6 @@ var spCarousel = spCarousel || {};
 				var prevIndex = getPrevSlideIndex(); // The next one we're pushing to the array
 				visibleSlidesArr.unshift(prevIndex);
 				slidesArr[prevIndex].style.left = (-slideWidth-offset) + 'px';
-				console.log(offset)
-				console.log((-slideWidth-offset));
 				slidesArr[prevIndex].style.display = "inline-block";
 				var animObj = slidesWrapElem.animate([{transform: 'translate(0)'},
 																				{transform: 'translate(' + slideWidth + 'px, 0px)'}
