@@ -347,7 +347,7 @@ var spCarousel = spCarousel || {};
 						// 3 elements.
 						// #3itemhack
 						if (slidesArr.length > 3) {
-							slidesArr[visibleSlidesArr[i]].style.left = newPos + 'px';
+							slidesArr[visibleSlidesArr[0]].style.display = "none";
 						}
 						visibleSlidesArr.shift();
 						releaseTransitionLock();
