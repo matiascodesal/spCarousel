@@ -59,7 +59,7 @@
 			"file": "src/spcarousel.js",
 			"settings":
 			{
-				"buffer_size": 19500,
+				"buffer_size": 19496,
 				"line_ending": "Windows"
 			}
 		}
@@ -173,15 +173,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19500,
+						"buffer_size": 19496,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1006,
-								1006
+								13367,
+								13367
 							]
 						],
 						"settings":
@@ -193,8 +193,8 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": 57.0,
+						"translation.y": 4635.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

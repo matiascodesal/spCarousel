@@ -1,0 +1,5 @@
+*Generate jsDocs HTML
+jsdoc --private -r -d docs .
+
+*Generate jsDocs MarkDown (github md)
+jsdoc2md --private src/spcarousel.js > api.md
