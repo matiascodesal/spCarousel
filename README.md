@@ -1,5 +1,5 @@
 # spCarousel
-Sneak Peak Carousel
+##### *Sneak Peak Carousel*
 
 This is a simple and elegant image carousel delivered as a single JS file.  Just add a few classes to your HTML and the carousel works!  It's called "sneak peak" because it gives the users just a glimpse of the adjacent images.  Just enough to want to see more.
 
