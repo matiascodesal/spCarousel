@@ -62,6 +62,14 @@
 				"buffer_size": 19496,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "example/index.html",
+			"settings":
+			{
+				"buffer_size": 821,
+				"line_ending": "Unix"
+			}
 		}
 	],
 	"build_system": "",
@@ -114,12 +122,14 @@
 	"expanded_folders":
 	[
 		"/C/code/web/modules/spCarousel",
-		"/C/code/web/modules/spCarousel/src",
-		"/C/code/web/modules/spCarousel/test"
+		"/C/code/web/modules/spCarousel/example",
+		"/C/code/web/modules/spCarousel/src"
 	],
 	"file_history":
 	[
+		"/C/code/web/modules/spCarousel/NOTES.md",
 		"/C/code/web/modules/spCarousel/test/test.html",
+		"/C/code/web/aileenaurora/dev/wp-content/themes/portfoto/index.php",
 		"/C/code/web/modules/spCarousel/test.html",
 		"/C/code/web/modules/spCarousel/js/spCarousel.js",
 		"/C/code/web/aileenaurora/dev/wp-content/themes/portfoto/js/spcarousel.js",
@@ -164,7 +174,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -193,8 +203,38 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 57.0,
-						"translation.y": 4635.0,
+						"translation.x": 0.0,
+						"translation.y": 6950.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "example/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 821,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								821,
+								821
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -209,7 +249,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
