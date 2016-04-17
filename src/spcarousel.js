@@ -37,7 +37,7 @@ var spCarousel = spCarousel || {};
 		var slideTransDuration = 500;
 		var transitionLocked = false;
 		// @todo make the config publicly accessible to allow for user configuration
-		var config = {defaultButtons:true}
+		var config = {defaultButtons:true, autoplay:false, slideInterval:4000};
 		var slideTimer;
 
 		/**
@@ -91,7 +91,14 @@ var spCarousel = spCarousel || {};
 		 * @method spCarousel.init
 		 * @public
 		 */
-		spCarousel.init = function() {
+		spCarousel.init = function(userConfig) {
+				clear();
+				if (!(userConfig === undefined)) {
+					for (var attrname in userConfig) { 
+						config[attrname] = userConfig[attrname]; 
+					}
+				}
+
 				createStyling();
 				frameElem = document.getElementsByClassName('sp-carousel-frame')[0];
 				if (frameElem == undefined) {
@@ -106,9 +113,11 @@ var spCarousel = spCarousel || {};
 				window.addEventListener('resize', windowResizeHandler, true);
 				// Disabled autoplay sliding because it caused some erratic behavior.
 				// @todo renable autoplay sliding
-				// slideTimer = setInterval(slideNextHandler, 4000);
-				// frameElem.addEventListener('mouseenter', function() {if (slideTimer) {clearTimeout(slideTimer);}}, true);
-				// frameElem.addEventListener('mouseout', function() {slideTimer = setInterval(slideNextHandler, 4000);}, true);
+				if(config.autoplay) {
+					spCarousel.startSlideTimer();
+					frameElem.addEventListener('mouseenter', spCarousel.stopSlideTimer, true);
+					frameElem.addEventListener('mouseout', spCarousel.startSlideTimer, true);
+				}
 				calculateDimensions();
 				validateSlidesArrayLength();
 				populateVisibleSlides();
@@ -121,6 +130,50 @@ var spCarousel = spCarousel || {};
 				}
 				
 		};
+
+		/**
+		 * Reset spCarousel components as possible.  Using this to clear the
+		 * carousel before reinitializing.
+		 * @method spCarousel~clear
+		 * @private
+		 */
+		function clear() {
+			buttons = document.getElementsByClassName('sp-carousel-condtrol-default');
+			while(buttons.length > 0) { 
+				buttons[0].parentNode.removeChild(buttons[0]);
+			}
+
+			window.removeEventListener("resize", windowResizeHandler);
+			if(frameElem) {
+				frameElem.removeEventListener("mouseenter", spCarousel.stopSlideTimer);
+				frameElem.removeEventListener("mouseout", spCarousel.startSlideTimer);
+			}
+
+			var nodes = document.getElementsByClassName('sp-carousel-frame')[0].getElementsByTagName('*');
+			for (var i = 0; i < nodes.length; i++) {
+				nodes[i].removeAttribute('style');
+			}
+		}
+
+		/**
+		 * Starts the carousel auto slide timer
+		 * @method spCarousel.startSlideTimer
+		 * @public
+		 */
+		spCarousel.startSlideTimer = function() {
+			slideTimer = setInterval(slideNextHandler, config.slideInterval);
+		}
+
+		/**
+		 * Stops the carousel auto slide timer if it exists.
+		 * @method spCarousel.stopSlideTimer
+		 * @public
+		 */
+		spCarousel.stopSlideTimer = function() {
+			if (slideTimer) {
+				clearTimeout(slideTimer);
+			}
+		}
 
 		/**
 		 * Get the index of the the next slide to be pushed from the left.
@@ -169,6 +222,7 @@ var spCarousel = spCarousel || {};
 		 * @private
 		 */
 		function populateVisibleSlides() {
+				visibleSlidesArr = [];
 				visibleSlidesArr.push(slidesArr.length - 1);
 				visibleSlidesArr.push(0);
 				visibleSlidesArr.push(1);
@@ -184,7 +238,7 @@ var spCarousel = spCarousel || {};
 				prevButton.style.left = '0px';
 				prevButton.style.height = frameHeight + 'px';
 				prevButton.style.width = bookEndWidth + 'px';
-				prevButton.className += prevButton.className ? ' sp-carousel-control sp-carousel-control-prev' : 'sp-carousel-control sp-carousel-control-prev';
+				prevButton.className += prevButton.className ? ' sp-carousel-control sp-carousel-condtrol-default sp-carousel-control-prev' : 'sp-carousel-control sp-carousel-condtrol-default sp-carousel-control-prev';
 				prevArrow = document.createElement('div');
 				prevArrow.style.left = bookEndWidth/3 + 'px';
 				prevArrow.style.height = prevArrow.style.width = bookEndWidth/4 + 'px';
@@ -194,7 +248,7 @@ var spCarousel = spCarousel || {};
 				nextButton.style.right = '0px';
 				nextButton.style.height = frameHeight + 'px';
 				nextButton.style.width = bookEndWidth + 'px';
-				nextButton.className += nextButton.className ? ' sp-carousel-control sp-carousel-control-next' : 'sp-carousel-control sp-carousel-control-next';
+				nextButton.className += nextButton.className ? ' sp-carousel-control sp-carousel-condtrol-default sp-carousel-control-next' : 'sp-carousel-control sp-carousel-condtrol-default sp-carousel-control-next';
 				nextArrow = document.createElement('div');
 				nextArrow.style.left = bookEndWidth/3 + 'px';
 				nextArrow.style.height = nextArrow.style.width = bookEndWidth/4 + 'px';
