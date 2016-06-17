@@ -5,7 +5,7 @@
 * follows the Module Pattern: {@link http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html}
 * @module
 * @author Matias Codesal
-* @version 1.0.0
+* @version 1.2.0
 * @copyright Matias Codesal 2016
 */
 
@@ -30,7 +30,7 @@ var spCarousel = spCarousel || {};
 		var currentIndex = 0;
 		var slidesArr = [];
 		var visibleSlidesArr = [];
-		var frameElem, slidesWrapElem, prevButton, nextButton;
+		var loadingElem, frameElem, slidesWrapElem, prevButton, nextButton;
 		var frameWidth, frameHeight, frameMaxWidth, slideWidth, slideHeight, 
 				slidesWrapWidth, slidesWrapHeight, imgRatio, sideWidth;
 		var offset;
@@ -100,6 +100,8 @@ var spCarousel = spCarousel || {};
 				}
 
 				createStyling();
+				loadingElem = document.getElementsByClassName('sp-loading')[0];
+				loadingElem.style.display = "none";
 				frameElem = document.getElementsByClassName('sp-carousel-frame')[0];
 				if (frameElem == undefined) {
 					console.log('No element found using sp-carousel-frame class.');
