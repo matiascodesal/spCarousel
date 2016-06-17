@@ -42,4 +42,9 @@ This is a simple and elegant image carousel delivered as a single JS file.  Just
    ```   
 
 ### Advanced Usage
-For more advanced usage check out the [wiki](https://github.com/matiascodesal/spCarousel/wiki) or take a look at the [API](https://github.com/matiascodesal/spCarousel/wiki/API)
+For more advanced usage check out the  
+> [wiki](https://github.com/matiascodesal/spCarousel/wiki)  
+
+or take a look at the  
+
+> [API](https://github.com/matiascodesal/spCarousel/wiki/API)  
